@@ -2,6 +2,9 @@ import { createWebHistory, createRouter } from "vue-router";
 import Home from "../views/Home.vue";
 import User from "../views/User.vue";
 import Stasiun from "../views/Stasiun.vue";
+import Produk from "../views/Produk.vue";
+import SingleProduk from "../views/SingleProduk.vue"
+import Kategori from "../views/Kategori.vue";
 
 const routes = [
   {
@@ -18,6 +21,21 @@ const routes = [
     path: "/stasiun",
     name: "Stasiun",
     component: Stasiun,
+  },
+  {
+    path: "/produk",
+    name: "Produk",
+    component: Produk,
+  },
+  {
+    path: "/kategori",
+    name: "Kategori",
+    component: Kategori,
+  },
+  {
+    path: "/produk/:id",
+    name: "SingleProduk",
+    component: SingleProduk,
   },
 ];
 
