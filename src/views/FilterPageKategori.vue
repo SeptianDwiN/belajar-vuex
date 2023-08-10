@@ -1,6 +1,6 @@
 <template>
-  
-    <section class="bg-white py-12 text-gray-700 sm:py-16 lg:py-20">
+
+        <section class="bg-white py-12 text-gray-700 sm:py-16 lg:py-20">
   <div class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-md text-center">
       <h2 class="font-serif text-2xl font-bold sm:text-3xl">PRODUK</h2>
@@ -8,7 +8,7 @@
     </div>
 
     <div class="mt-10 grid grid-cols-3 gap-6 lg:mt-16 lg:grid-cols-4 lg:gap-4">
-        <div v-for="produk in getProduk" :key="produk.id">
+        <div v-for="produk in filteredProduk" :key="produk.id">
             <router-link :to="{name: 'SingleProduk', params: {id: produk.id}}" class="group">
       <article class="relative">
         <div class="aspect-square overflow-hidden">
@@ -43,6 +43,7 @@
               </svg>
             </div>
           </div>
+        
 
           <div class="text-right">
             <del class="mt-px text-xs font-semibold text-gray-600 sm:text-sm"> $79.00 </del>
@@ -56,27 +57,24 @@
   </div>
 </section>
 
+
 </template>
-    
-    <script>
+
+<script>
     import { mapGetters, mapActions } from 'vuex';
-    
+
     export default {
-        computed: {
-            ...mapGetters('produk', ['getProduk']),
+        computed : {
+            ...mapGetters("produk", ["getProdukKategori"]),
+            filteredProduk(){
+                return this.getProdukKategori(this.$route.params.kategori);
+            },
         },
-        methods: {
-            ...mapActions('produk', ['fetchProduk']),
-            getImage(imageURL) {
-                return {
-                    'src': `${imageURL}`,
-                    'background-size': 'cover',
-                    'background-position': 'center'
-                }
-            }
+        methods : {
+            ...mapActions("produk", ['fetchFilterProduk']),
         },
-        created() {
-            this.fetchProduk();
-        }
-   }
+        created(){
+            this.fetchFilterProduk();
+        },
+    }; 
 </script>

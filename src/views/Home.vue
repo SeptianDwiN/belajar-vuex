@@ -1,4 +1,6 @@
 <template>
+    <br>
+    <br>
     <div id="app">
         <div class="container mx-auto sm:px-4" style="padding-top: 20px">
             <div class="grid grid-rows-4 grid-flow-col gap-6">

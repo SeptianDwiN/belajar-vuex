@@ -5,6 +5,9 @@ import Stasiun from "../views/Stasiun.vue";
 import Produk from "../views/Produk.vue";
 import SingleProduk from "../views/SingleProduk.vue"
 import Kategori from "../views/Kategori.vue";
+import Login from "../views/Login.vue";
+import store from "../store"
+import FilterPageKategori from "../views/FilterPageKategori.vue"
 
 const routes = [
   {
@@ -33,6 +36,17 @@ const routes = [
     component: Kategori,
   },
   {
+    path: "/kategori/:kategori",
+    name: "FilterKategori",
+    component: FilterPageKategori,
+  },
+  {
+    path: "/login",
+    name: "Login",
+    component: Login,
+    meta: { requireGuest: true },
+},
+  {
     path: "/produk/:id",
     name: "SingleProduk",
     component: SingleProduk,
@@ -42,6 +56,14 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(),
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  if (to.meta.requireGuest && store.getters["auth/isAuthenticated"]) {
+      next("/");
+  } else {
+      next();
+  }
 });
 
 export default router;

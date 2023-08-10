@@ -1,4 +1,6 @@
 <template>
+    <br>
+    <br>
     <div class="container mx-auto sm:px-4">
         <h1 class="lg:prose-2xl text-center">Fetch Stasiun</h1>
         <table class="table-auto">
